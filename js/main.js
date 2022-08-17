@@ -131,3 +131,7 @@ spyEls.forEach(function (spyEl) {
     .setClassToggle(spyEl, "show")
     .addTo(new ScrollMagic.Controller());
 });
+
+//년도 계산
+const thisYear = document.querySelector(".this-year");
+thisYear.textContent = new Date().getFullYear();
