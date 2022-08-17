@@ -45,6 +45,8 @@ fadeEls.forEach(function (fadeEl, index) {
   });
 });
 
+// 슬라이더
+
 // new Swiper(선택자, 옵션)
 new Swiper(".notice-line .swiper-container", {
   direction: "vertical",
@@ -54,11 +56,12 @@ new Swiper(".notice-line .swiper-container", {
 
 // new Swiper(선택자, 옵션)
 new Swiper(".promotion .swiper-container", {
-  slidePerView: 3, //한번에 보여줄 슬라이드 개수
+  slidesPerView: 3, //한번에 보여줄 슬라이드 개수
   spaceBetween: 10, //슬라이드 사이 여백 -> 10px
-  centeredSlide: true, //가운데 시작
+  centeredSlides: true, //가운데 시작
   autoplay: {
-    delay: 5000,
+    // 자동 재생 여부
+    delay: 5000, // 5초마다 슬라이드 바뀜
   },
   loop: true,
   pagination: {
@@ -68,6 +71,18 @@ new Swiper(".promotion .swiper-container", {
   navigation: {
     prevEl: ".promotion .swiper-prev",
     nextEl: ".promotion .swiper-next",
+  },
+});
+
+// new Swiper(선택자, 옵션)
+new Swiper(".awards .swiper-container", {
+  autoplay: true,
+  loop: true,
+  spaceBetween: 30,
+  slidesPerView: 5,
+  navigation: {
+    prevEl: ".awards .swiper-prev",
+    nextEl: ".awards .swiper-next",
   },
 });
 
@@ -106,3 +121,13 @@ function floatingObject(selector, delay, size) {
 floatingObject(".floating1", 1, 15);
 floatingObject(".floating2", 0.5, 15);
 floatingObject(".floating3", 1.5, 20);
+
+const spyEls = document.querySelectorAll("section.scroll-spy");
+spyEls.forEach(function (spyEl) {
+  new ScrollMagic.Scene({
+    triggerElement: spyEl, //보여짐 여부를 감시할 요소를 지정
+    triggerHook: 0.8, //뷰포트 0~1사이 -> 0.8 시점에서 triggerElement가 걸리면 어떠한 것이 실행됨을 의미
+  })
+    .setClassToggle(spyEl, "show")
+    .addTo(new ScrollMagic.Controller());
+});
